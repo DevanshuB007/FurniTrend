@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:furlenco/Onboarding%20Screen/OnboardingScreen.dart';
 import 'package:furlenco/Splash_screen/splash_screen.dart';
 
 void main() {
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       // home: const MyHomePage(title: 'Flutter Demo Home Page'),
-      home: SplashScreen(),
+      home: OnboardingScreen(),
     );
   }
 }

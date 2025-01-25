@@ -11,9 +11,10 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        scrolledUnderElevation: 0,
         elevation: 0,
         backgroundColor: Colors.white,
-        title: Image.asset('assets/images/logo.png', height: 20),
+        title: Image.asset('assets/images/logo.webp', height: 20),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -21,8 +22,11 @@ class HomeScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const CategorySection(),
-            // const BannerSection(),
-            // const OfferSection(),
+            SizedBox(
+              height: 10,
+            ),
+            const BannerSection(),
+            const OfferSection(),
           ],
         ),
       ),
