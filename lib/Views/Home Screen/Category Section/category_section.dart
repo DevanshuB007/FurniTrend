@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:furlenco/Views/Home%20Screen/Delevery_Loacation/delevery_location.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CategorySection extends StatelessWidget {
   const CategorySection({super.key});
@@ -32,52 +34,59 @@ class CategorySection extends StatelessWidget {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      showModalBottomSheet(
-                        context: context,
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.vertical(
-                            top: Radius.circular(16),
-                          ),
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (cntext) => DeliveryLocationScreen(),
                         ),
-                        builder: (BuildContext context) {
-                          return Container(
-                            height: 300,
-                            padding: const EdgeInsets.all(16.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text(
-                                  "Choose Delivery Location",
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                const SizedBox(height: 8),
-                                const Divider(),
-                                ListTile(
-                                  leading: const Icon(Icons.location_city),
-                                  title: const Text("Use Current Location"),
-                                  onTap: () {
-                                    Navigator.pop(context);
-                                  },
-                                ),
-                                ListTile(
-                                  leading: const Icon(Icons.search),
-                                  title: const Text("Search for a Location"),
-                                  onTap: () {
-                                    Navigator.pop(context);
-                                  },
-                                ),
-                                const ListTile(
-                                  leading: Icon(Icons.map),
-                                  title: Text("Choose from Map"),
-                                ),
-                              ],
-                            ),
-                          );
-                        },
                       );
+                      // showModalBottomSheet(
+                      //   context: context,
+                      //   shape: const RoundedRectangleBorder(
+                      //     borderRadius: BorderRadius.vertical(
+                      //       top: Radius.circular(16),
+                      //     ),
+                      //   ),
+                      //   builder: (BuildContext context) {
+                      //     return Container(
+                      //       height: 900,
+                      //       padding: const EdgeInsets.all(16.0),
+                      //       child: Column(
+                      //         crossAxisAlignment: CrossAxisAlignment.start,
+                      //         children: [
+                      //           DeliveryLocationScreen(),
+                      //           const Text(
+                      //             "Choose Delivery Location",
+                      //             style: TextStyle(
+                      //               fontSize: 18,
+                      //               fontWeight: FontWeight.bold,
+                      //             ),
+                      //           ),
+                      //           const SizedBox(height: 8),
+                      //           const Divider(),
+                      //           ListTile(
+                      //             leading: const Icon(Icons.location_city),
+                      //             title: const Text("Use Current Location"),
+                      //             onTap: () {
+                      //               Navigator.pop(context);
+                      //             },
+                      //           ),
+                      //           ListTile(
+                      //             leading: const Icon(Icons.search),
+                      //             title: const Text("Search for a Location"),
+                      //             onTap: () {
+                      //               Navigator.pop(context);
+                      //             },
+                      //           ),
+                      //           const ListTile(
+                      //             leading: Icon(Icons.map),
+                      //             title: Text("Choose from Map"),
+                      //           ),
+                      //         ],
+                      //       ),
+                      //     );
+                      //   },
+                      // );
                     },
                     child: Row(
                       children: const [
@@ -145,13 +154,15 @@ class CategorySection extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              const Text(
+                              Text(
                                 "The best furniture at the Best Prices!",
                                 textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w500,
-                                ),
+                                style: GoogleFonts.lora(
+                                    fontSize: 14, fontWeight: FontWeight.w500),
+                                // style: TextStyle(
+                                //   fontSize: 14,
+                                //   fontWeight: FontWeight.w500,
+                                // ),
                               ),
                               Expanded(
                                 child: Image.asset(
@@ -175,13 +186,15 @@ class CategorySection extends StatelessWidget {
                           color: Colors.blue[800],
                           borderRadius: BorderRadius.circular(16),
                         ),
-                        child: const Text(
+                        child: Text(
                           "BUY BRAND NEW",
                           textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: GoogleFonts.dmSans(
+                              color: Colors.white, fontWeight: FontWeight.bold),
+                          // style: TextStyle(
+                          //   color: Colors.white,
+                          //   fontWeight: FontWeight.bold,
+                          // ),
                         ),
                       ),
                     ),
@@ -250,13 +263,11 @@ class CategorySection extends StatelessWidget {
                           color: Colors.deepOrange,
                           borderRadius: BorderRadius.circular(16),
                         ),
-                        child: const Text(
+                        child: Text(
                           "RENT",
                           textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: GoogleFonts.dmSans(
+                              color: Colors.white, fontWeight: FontWeight.bold),
                         ),
                       ),
                     ),
@@ -304,7 +315,9 @@ class CategorySection extends StatelessWidget {
                               Expanded(
                                 child: Image.asset(
                                   "assets/images/sofa1.png",
-                                  fit: BoxFit.contain,
+                                  fit: BoxFit.cover,
+                                  height: 100,
+                                  width: 100,
                                 ),
                               ),
                             ],
@@ -323,13 +336,11 @@ class CategorySection extends StatelessWidget {
                           color: Color(0xFF059baa),
                           borderRadius: BorderRadius.circular(16),
                         ),
-                        child: const Text(
+                        child: Text(
                           "BUY REFURBISHED",
                           textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: GoogleFonts.dmSans(
+                              color: Colors.white, fontWeight: FontWeight.bold),
                         ),
                       ),
                     ),
@@ -396,13 +407,11 @@ class CategorySection extends StatelessWidget {
                           color: Colors.purple,
                           borderRadius: BorderRadius.circular(16),
                         ),
-                        child: const Text(
+                        child: Text(
                           "UNLMTD",
                           textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: GoogleFonts.dmSans(
+                              color: Colors.white, fontWeight: FontWeight.bold),
                         ),
                       ),
                     ),

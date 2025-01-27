@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:furlenco/Views/Home%20Screen/Home%20Section/home_scr.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -34,6 +35,27 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     },
   ];
 
+  @override
+  void initState() {
+    super.initState();
+    _checkIfFirstTime();
+  }
+
+  Future<void> _checkIfFirstTime() async {
+    final prefs = await SharedPreferences.getInstance();
+    final bool isFirstTime = prefs.getBool('isFirstTime') ?? true;
+
+    if (!isFirstTime) {
+      _navigateToHome();
+    }
+  }
+
+  Future<void> _completeOnboarding() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('isFirstTime', false);
+    _navigateToHome();
+  }
+
   void _navigateToNextPage() {
     if (_currentPage < _slides.length - 1) {
       _pageController.nextPage(
@@ -52,9 +74,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     }
   }
 
-  void _skipOnboarding() {
-    // Add your navigation logic here (e.g., go to home screen)
-    print("Skipped Onboarding");
+  void _navigateToHome() {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => HomeScreen()),
+    );
   }
 
   @override
@@ -168,12 +192,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 const SizedBox(height: 20),
                 // Skip Text
                 TextButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => HomeScreen()),
-                    );
-                  },
+                  onPressed: _completeOnboarding,
                   child: const Text(
                     'SKIP',
                     style: TextStyle(

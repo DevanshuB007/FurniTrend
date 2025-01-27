@@ -6,10 +6,11 @@ class BannerSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<String> imagePaths = [
-      'assets/images/1.webp',
-      'assets/images/banner2.jpeg',
-    ];
+    // final List<String> imagePaths = [
+    //   // 'assets/images/1.webp',
+    //   'assets/images/banner2.jpeg',
+    //   'assets/images/banner2.jpeg',
+    // ];
 
     return Center(
       child: CarouselSlider(
@@ -27,7 +28,7 @@ class BannerSection extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               image: const DecorationImage(
-                image: AssetImage('assets/images/1.webp'),
+                image: AssetImage('assets/images/banner2.jpeg'),
                 fit: BoxFit.contain,
               ),
             ),
