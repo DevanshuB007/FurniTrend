@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:furlenco/Views/Home%20Screen/Banner%20Section/banner_section.dart';
 import 'package:furlenco/Views/Home%20Screen/Category%20Section/category_section.dart';
+import 'package:furlenco/Views/Home%20Screen/Home%20Section/dashboard_scr.dart';
 import 'package:furlenco/Views/Home%20Screen/Offer%20Section/offer_section.dart';
+import 'package:furlenco/Views/Home%20Screen/Product_category/produccateg.dart';
 import 'package:furlenco/Views/Home%20Screen/profile_Screen/profile_scr.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -16,8 +18,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   // List of widgets to display based on the selected tab
   final List<Widget> _screens = [
-    const HomeTab(), // Home Screen
-    const CategoryTab(), // Category Screen
+    const DashboardScr(), // Home Screen
+    const ProductListingPage(), // Category Screen
     ProfileScreen(),
   ];
 
@@ -30,14 +32,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        scrolledUnderElevation: 0,
-        elevation: 0,
-        backgroundColor: Colors.white,
-        // title: Image.asset('assets/images/logo.webp', height: 20),
-        centerTitle: true,
-      ),
       body: _screens[_selectedIndex], // Display the selected screen
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.white,
@@ -67,39 +61,42 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 // Home Tab Widget
-class HomeTab extends StatelessWidget {
-  const HomeTab({super.key});
+// class HomeTab extends StatelessWidget {
+//   const HomeTab({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const BannerSection(),
-          const CategorySection(),
-          const SizedBox(height: 10),
-          const OfferSection(),
-        ],
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return SingleChildScrollView(
+//       child: Column(
+//         crossAxisAlignment: CrossAxisAlignment.start,
+//         children: [
+//           SizedBox(
+//             height: 20,
+//           ),
+//           const BannerSection(),
+//           const CategorySection(),
+//           const SizedBox(height: 10),
+//           const OfferSection(),
+//         ],
+//       ),
+//     );
+//   }
+// }
 
 // Category Tab Widget
-class CategoryTab extends StatelessWidget {
-  const CategoryTab({super.key});
+// class CategoryTab extends StatelessWidget {
+//   const CategoryTab({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        'Category Screen',
-        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Center(
+//       child: Text(
+//         'Category Screen',
+//         style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+//       ),
+//     );
+//   }
+// }
 
 // Profile Tab Widget
 // class ProfileTab extends StatelessWidget {

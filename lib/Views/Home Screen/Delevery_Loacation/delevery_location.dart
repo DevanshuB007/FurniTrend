@@ -18,7 +18,7 @@ class DeliveryLocationScreen extends StatelessWidget {
       {"name": "Gandhinagar", "icon": "assets/images/pune.png"},
       {"name": "Jaipur", "icon": "assets/images/jaipur.png"},
       {"name": "Ghaziabad", "icon": "assets/images/pune.png"},
-      {"name": "Faridabad", "icon": "assets/images/pune.png"},
+      {"name": "Faridabad", "icon": "assets/images/bengaluru.png"},
       {"name": "Chandigarh", "icon": "assets/images/pune.png"},
       {"name": "Mysuru", "icon": "assets/images/pune.png"},
     ];
@@ -124,7 +124,7 @@ class DeliveryLocationScreen extends StatelessWidget {
                       Text(
                         city['name']!,
                         style: GoogleFonts.lora(
-                            color: Colors.grey,
+                            color: Colors.black,
                             fontSize: 13,
                             fontWeight: FontWeight.w400),
                         // style: TextStyle(fontSize: 14),

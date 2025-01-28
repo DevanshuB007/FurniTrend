@@ -20,7 +20,7 @@ class CategorySection extends StatelessWidget {
               padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(40),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.grey.withOpacity(0.2),
@@ -40,61 +40,28 @@ class CategorySection extends StatelessWidget {
                           builder: (cntext) => DeliveryLocationScreen(),
                         ),
                       );
-                      // showModalBottomSheet(
-                      //   context: context,
-                      //   shape: const RoundedRectangleBorder(
-                      //     borderRadius: BorderRadius.vertical(
-                      //       top: Radius.circular(16),
-                      //     ),
-                      //   ),
-                      //   builder: (BuildContext context) {
-                      //     return Container(
-                      //       height: 900,
-                      //       padding: const EdgeInsets.all(16.0),
-                      //       child: Column(
-                      //         crossAxisAlignment: CrossAxisAlignment.start,
-                      //         children: [
-                      //           DeliveryLocationScreen(),
-                      //           const Text(
-                      //             "Choose Delivery Location",
-                      //             style: TextStyle(
-                      //               fontSize: 18,
-                      //               fontWeight: FontWeight.bold,
-                      //             ),
-                      //           ),
-                      //           const SizedBox(height: 8),
-                      //           const Divider(),
-                      //           ListTile(
-                      //             leading: const Icon(Icons.location_city),
-                      //             title: const Text("Use Current Location"),
-                      //             onTap: () {
-                      //               Navigator.pop(context);
-                      //             },
-                      //           ),
-                      //           ListTile(
-                      //             leading: const Icon(Icons.search),
-                      //             title: const Text("Search for a Location"),
-                      //             onTap: () {
-                      //               Navigator.pop(context);
-                      //             },
-                      //           ),
-                      //           const ListTile(
-                      //             leading: Icon(Icons.map),
-                      //             title: Text("Choose from Map"),
-                      //           ),
-                      //         ],
-                      //       ),
-                      //     );
-                      //   },
-                      // );
                     },
                     child: Row(
-                      children: const [
-                        Icon(Icons.location_on, color: Colors.teal),
+                      children: [
+                        IconButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        DeliveryLocationScreen()));
+                          },
+                          icon: Icon(
+                            Icons.pin_drop_rounded,
+                            color: Colors.grey,
+                            size: 40,
+                          ),
+                        ),
                         SizedBox(width: 8),
                         Text(
-                          "Delivery to 520001",
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                          "Delivery to\n 520001",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 11),
                         ),
                       ],
                     ),
@@ -111,6 +78,9 @@ class CategorySection extends StatelessWidget {
                 ],
               ),
             ),
+          ),
+          SizedBox(
+            height: 10,
           ),
 
           // Grid Layout for Categories
@@ -167,7 +137,7 @@ class CategorySection extends StatelessWidget {
                               Expanded(
                                 child: Image.asset(
                                   "assets/images/sofa.png",
-                                  fit: BoxFit.contain,
+                                  fit: BoxFit.cover,
                                 ),
                               ),
                             ],
@@ -186,15 +156,19 @@ class CategorySection extends StatelessWidget {
                           color: Colors.blue[800],
                           borderRadius: BorderRadius.circular(16),
                         ),
-                        child: Text(
-                          "BUY BRAND NEW",
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.dmSans(
-                              color: Colors.white, fontWeight: FontWeight.bold),
-                          // style: TextStyle(
-                          //   color: Colors.white,
-                          //   fontWeight: FontWeight.bold,
-                          // ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(1),
+                          child: Text(
+                            "BUY BRAND NEW",
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.dmSans(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
+                            // style: TextStyle(
+                            //   color: Colors.white,
+                            //   fontWeight: FontWeight.bold,
+                            // ),
+                          ),
                         ),
                       ),
                     ),
@@ -208,7 +182,7 @@ class CategorySection extends StatelessWidget {
                     Container(
                       decoration: BoxDecoration(
                         gradient: const LinearGradient(
-                          colors: [Colors.deepOrange, Colors.red],
+                          colors: [Colors.deepOrange, Colors.purple],
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
                         ),
@@ -279,7 +253,7 @@ class CategorySection extends StatelessWidget {
                     Container(
                       decoration: BoxDecoration(
                         gradient: const LinearGradient(
-                          colors: [Colors.orange, Colors.red],
+                          colors: [Colors.orange, Colors.deepOrange],
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
                         ),
@@ -336,11 +310,15 @@ class CategorySection extends StatelessWidget {
                           color: Color(0xFF059baa),
                           borderRadius: BorderRadius.circular(16),
                         ),
-                        child: Text(
-                          "BUY REFURBISHED",
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.dmSans(
-                              color: Colors.white, fontWeight: FontWeight.bold),
+                        child: Padding(
+                          padding: const EdgeInsets.all(3),
+                          child: Text(
+                            "BUY REFURBISHED",
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.dmSans(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
+                          ),
                         ),
                       ),
                     ),
@@ -388,7 +366,7 @@ class CategorySection extends StatelessWidget {
                               Expanded(
                                 child: Image.asset(
                                   "assets/images/furnite.png",
-                                  fit: BoxFit.contain,
+                                  fit: BoxFit.cover,
                                 ),
                               ),
                             ],
@@ -407,11 +385,15 @@ class CategorySection extends StatelessWidget {
                           color: Colors.purple,
                           borderRadius: BorderRadius.circular(16),
                         ),
-                        child: Text(
-                          "UNLMTD",
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.dmSans(
-                              color: Colors.white, fontWeight: FontWeight.bold),
+                        child: Padding(
+                          padding: const EdgeInsets.all(1),
+                          child: Text(
+                            "UNLMTD",
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.dmSans(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
+                          ),
                         ),
                       ),
                     ),

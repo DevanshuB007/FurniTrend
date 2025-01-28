@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:furlenco/Onboarding%20Screen/OnboardingScreen.dart';
 import 'package:furlenco/Splash_screen/splash_screen.dart';
 import 'package:furlenco/Views/Home%20Screen/Delevery_Loacation/delevery_location.dart';
+import 'package:furlenco/Views/Home%20Screen/Login_screen/login_scr.dart';
+import 'package:furlenco/Views/Home%20Screen/New_Arival_section/newarrivals.dart';
+import 'package:furlenco/Views/Home%20Screen/Product_category/produccateg.dart';
 import 'package:furlenco/Views/Home%20Screen/profile_Screen/profile_scr.dart';
 
 void main() {
@@ -23,7 +26,7 @@ class MyApp extends StatelessWidget {
       ),
       // home: const MyHomePage(title: 'Flutter Demo Home Page'),
       home: OnboardingScreen(),
-      // home: ProfileScreen(),
+      // home: LoginScreen(),
     );
   }
 }
