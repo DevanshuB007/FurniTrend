@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:furlenco/Views/Home%20Screen/Deals%20of%20the%20day/deals_offer.dart';
 
 class DealsDay extends StatefulWidget {
   const DealsDay({super.key});
@@ -63,7 +64,10 @@ class _DealsDayState extends State<DealsDay> {
             ],
           ),
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => DealsOffer()));
+            },
             child: const Text(
               "View All →",
               style: TextStyle(color: Colors.black),

@@ -1,48 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:furlenco/Views/Home%20Screen/Search_Section/search_sec.dart';
 
-class Newarrivalslist extends StatelessWidget {
-  const Newarrivalslist({super.key});
+class Bedroom extends StatelessWidget {
+  const Bedroom({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        toolbarHeight: 100,
         elevation: 0,
         backgroundColor: Colors.white,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () {
-            Navigator.pop(context);
-          },
+          onPressed: () {},
         ),
         title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
-            Text(
-              'Delivery to',
-              style: TextStyle(fontSize: 12, color: Colors.grey),
-            ),
-            Text(
-              '132001',
-              style: TextStyle(fontSize: 16, color: Colors.black),
-            ),
+          children: [
+            SearchSec(),
           ],
         ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.search, color: Colors.black),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: const Icon(Icons.favorite_border, color: Colors.black),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: const Icon(Icons.shopping_cart_outlined, color: Colors.black),
-            onPressed: () {},
-          ),
-        ],
       ),
       body: Column(
         children: [
