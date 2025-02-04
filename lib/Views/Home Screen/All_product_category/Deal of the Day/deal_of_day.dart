@@ -1,100 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:furlenco/Views/Home%20Screen/Search_Section/search_sec.dart';
 
-class Bedroom extends StatelessWidget {
-  const Bedroom({super.key});
+class DealOfDay extends StatelessWidget {
+  const DealOfDay({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        toolbarHeight: 100,
-        elevation: 0,
-        backgroundColor: Colors.white,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () {},
-        ),
-        title: Column(
-          children: [
-            SearchSec(),
-          ],
-        ),
-      ),
-      body: Column(
-        children: [
-          // Category Tabs
-          // SingleChildScrollView(
-          //   scrollDirection: Axis.horizontal,
-          //   padding: const EdgeInsets.symmetric(horizontal: 8),
-          //   child: Row(
-          //     children: [
-          //       _buildTab("Bedroom", true),
-          //       _buildTab("Living Room", false),
-          //       _buildTab("Appliances", false),
-          //       _buildTab("Queen Beds", false),
-          //       _buildTab("Storage Beds", false),
-          //     ],
-          //   ),
-          // ),
-          const SizedBox(height: 8),
+    return Column(
+      children: [
+        const SizedBox(height: 8),
 
-          // Filter Tags
-          // SingleChildScrollView(
-          //   scrollDirection: Axis.horizontal,
-          //   padding: const EdgeInsets.symmetric(horizontal: 8),
-          //   child: Row(
-          //     children: [
-          //       _buildFilterTag("Queen Beds"),
-          //       _buildFilterTag("Storage Beds"),
-          //       _buildFilterTag("King Beds"),
-          //     ],
-          //   ),
-          // ),
-          const SizedBox(height: 8),
-
-          // Product Grid
-          Expanded(
-            child: GridView.builder(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 0.7,
-                crossAxisSpacing: 5,
-                mainAxisSpacing: 8,
-              ),
-              itemCount: 6,
-              itemBuilder: (context, index) {
-                return _buildProductCard(index);
-              },
+        // Product Grid
+        Expanded(
+          child: GridView.builder(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              childAspectRatio: 0.7,
+              crossAxisSpacing: 8,
+              mainAxisSpacing: 8,
             ),
+            itemCount: 6,
+            itemBuilder: (context, index) {
+              return _buildProductCard(index);
+            },
           ),
-        ],
-      ),
-
-      // Bottom Navigation Bar
-      bottomNavigationBar: BottomAppBar(
-        color: Colors.white,
-        elevation: 8,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Column(
-              children: [
-                Icon(Icons.swap_vert_outlined),
-                Text("Sort"),
-              ],
-            ),
-            Column(
-              children: [
-                Icon(Icons.filter_list),
-                Text("Fillter"),
-              ],
-            )
-          ],
         ),
-      ),
+      ],
     );
   }
 
@@ -167,7 +99,7 @@ class Bedroom extends StatelessWidget {
                 const SizedBox(height: 8),
                 const Text(
                   "Blanca Engineered Wood Queen Bed",
-                  maxLines: 2,
+                  maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
                 ),

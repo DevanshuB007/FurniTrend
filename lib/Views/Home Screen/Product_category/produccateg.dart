@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:furlenco/Views/Home%20Screen/All_product_category/bedroom.dart';
-import 'package:furlenco/Views/Home%20Screen/All_product_category/leavingroom.dart';
 import 'package:furlenco/Views/Home%20Screen/All_product_category/products.dart';
 import 'package:furlenco/Views/Home%20Screen/Banner%20Section/banner_section.dart';
 import 'package:furlenco/Views/Home%20Screen/Search_Section/search_sec.dart';
@@ -15,8 +13,65 @@ class ProductListingPage extends StatelessWidget {
         backgroundColor: Colors.white,
         toolbarHeight: 100,
         title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SearchSec(),
+            Container(
+              padding: const EdgeInsets.all(6.0),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(40),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.2),
+                    spreadRadius: 2,
+                    blurRadius: 4,
+                  ),
+                ],
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context); // Navigate back when pressed
+                    },
+                    child: Row(
+                      children: [
+                        IconButton(
+                          onPressed: () {
+                            Navigator.pop(
+                                context); // Navigate back when pressed
+                          },
+                          icon: Icon(
+                            Icons.arrow_back, // Back arrow icon
+                            color: Colors.grey,
+                            size: 30,
+                          ),
+                        ),
+                        // SizedBox(width: 8), // Optional space between icon and text
+                        Text(
+                          "Delivery to\n 520001",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 12),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: const [
+                        Icon(Icons.search, color: Colors.grey),
+                        SizedBox(width: 16),
+                        Icon(Icons.favorite_border, color: Colors.grey),
+                        SizedBox(width: 16),
+                        Icon(Icons.shopping_cart, color: Colors.grey),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),

@@ -62,14 +62,17 @@ class SearchSec extends StatelessWidget {
                     ],
                   ),
                 ),
-                Row(
-                  children: const [
-                    Icon(Icons.search, color: Colors.grey),
-                    SizedBox(width: 16),
-                    Icon(Icons.favorite_border, color: Colors.grey),
-                    SizedBox(width: 16),
-                    Icon(Icons.shopping_cart, color: Colors.grey),
-                  ],
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: const [
+                      Icon(Icons.search, color: Colors.grey),
+                      SizedBox(width: 16),
+                      Icon(Icons.favorite_border, color: Colors.grey),
+                      SizedBox(width: 16),
+                      Icon(Icons.shopping_cart, color: Colors.grey),
+                    ],
+                  ),
                 ),
               ],
             ),

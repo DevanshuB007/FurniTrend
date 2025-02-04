@@ -7,13 +7,15 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:furlenco/Views/Home%20Screen/Offer%20Section/offersscreen.dart'
+    as offer_screen;
 
-import 'package:furlenco/main.dart';
+import 'package:furlenco/main.dart' as main_app;
 
-void main() {
+void main() { 
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(main_app.MyApp());
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);
