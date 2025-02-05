@@ -33,22 +33,21 @@ class ProductListingPage extends StatelessWidget {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      Navigator.pop(context); // Navigate back when pressed
+                      Navigator.pop(context);
                     },
                     child: Row(
                       children: [
                         IconButton(
                           onPressed: () {
-                            Navigator.pop(
-                                context); // Navigate back when pressed
+                            Navigator.pop(context);
                           },
                           icon: Icon(
-                            Icons.arrow_back, // Back arrow icon
+                            Icons.arrow_back,
                             color: Colors.grey,
                             size: 30,
                           ),
                         ),
-                        // SizedBox(width: 8), // Optional space between icon and text
+                        // SizedBox(width: 8),
                         Text(
                           "Delivery to\n 520001",
                           style: TextStyle(
@@ -93,38 +92,193 @@ class ProductListingPage extends StatelessWidget {
             child: GridView.count(
               crossAxisCount: 4,
               crossAxisSpacing: 1,
-              mainAxisSpacing: 15,
+              mainAxisSpacing: 20,
               padding: const EdgeInsets.all(16),
               children: [
                 buildCategory(
                   "Bedroom",
                   Icons.bed,
                   onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Products()));
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            Products(selectedCategory: "Bedroom"),
+                      ),
+                    );
                   },
                 ),
                 buildCategory(
                   "Living Room",
                   Icons.chair,
-                  isPriceDrop: true,
                   onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Products()));
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            Products(selectedCategory: "Living Room"),
+                      ),
+                    );
                   },
                 ),
-                buildCategory("Appliances", Icons.kitchen, isPriceDrop: true),
-                buildCategory("BHK Combos", Icons.home),
-                buildCategory("Storage", Icons.inventory),
-                buildCategory("Study", Icons.desk),
-                buildCategory("Dining", Icons.dining),
-                buildCategory("Z Rated", Icons.star, isNew: true),
-                buildCategory("Kids Room", Icons.child_care),
-                buildCategory("Fitness", Icons.fitness_center),
-                buildCategory("Electronics", Icons.computer),
-                buildCategory("Mattress", Icons.king_bed),
-                buildCategory("Deal of the Day", Icons.local_offer),
-                buildCategory("Luxury", Icons.diamond),
+                buildCategory(
+                  "Appliances",
+                  Icons.kitchen,
+                  isPriceDrop: true,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            Products(selectedCategory: "Appliances"),
+                      ),
+                    );
+                  },
+                ),
+                buildCategory(
+                  "BHK Combos",
+                  Icons.home,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            Products(selectedCategory: "BHK Combos"),
+                      ),
+                    );
+                  },
+                ),
+                buildCategory(
+                  "Storage",
+                  Icons.inventory,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            Products(selectedCategory: "Storage"),
+                      ),
+                    );
+                  },
+                ),
+                buildCategory(
+                  "Study",
+                  Icons.desk,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            Products(selectedCategory: "Study"),
+                      ),
+                    );
+                  },
+                ),
+                buildCategory(
+                  "Dining",
+                  Icons.dining,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            Products(selectedCategory: "Dining"),
+                      ),
+                    );
+                  },
+                ),
+                buildCategory(
+                  "Z Rated",
+                  Icons.star,
+                  isNew: true,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            Products(selectedCategory: "Z Rated"),
+                      ),
+                    );
+                  },
+                ),
+                buildCategory(
+                  "Kids Room",
+                  Icons.child_care,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            Products(selectedCategory: "Kids Room"),
+                      ),
+                    );
+                  },
+                ),
+                buildCategory(
+                  "Fitness",
+                  Icons.fitness_center,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            Products(selectedCategory: "Fitness"),
+                      ),
+                    );
+                  },
+                ),
+                buildCategory(
+                  "Electronics",
+                  Icons.computer,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            Products(selectedCategory: "Electronics"),
+                      ),
+                    );
+                  },
+                ),
+                buildCategory(
+                  "Mattress",
+                  Icons.king_bed,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            Products(selectedCategory: "Mattress"),
+                      ),
+                    );
+                  },
+                ),
+                buildCategory(
+                  "Deal of the Day",
+                  Icons.local_offer,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            Products(selectedCategory: "Deal of the Day"),
+                      ),
+                    );
+                  },
+                ),
+                buildCategory(
+                  "Luxury",
+                  Icons.diamond,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            Products(selectedCategory: "Luxury"),
+                      ),
+                    );
+                  },
+                ),
               ],
             ),
           ),
@@ -177,11 +331,11 @@ class ProductListingPage extends StatelessWidget {
               CircleAvatar(
                 radius: 20,
                 backgroundColor: Colors.teal.shade50,
-                child: Icon(icon, size: 20, color: Colors.teal),
+                child: Icon(icon, size: 25, color: Colors.teal),
               ),
               if (isPriceDrop)
                 Positioned(
-                  top: -15,
+                  top: -18,
                   right: -15,
                   child: Container(
                     padding:
@@ -200,10 +354,10 @@ class ProductListingPage extends StatelessWidget {
               if (isNew)
                 Positioned(
                   top: -16,
-                  left: 5,
+                  left: 2,
                   child: Container(
                     padding:
-                        const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+                        const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                     decoration: BoxDecoration(
                       color: Colors.green,
                       borderRadius: BorderRadius.circular(4),
