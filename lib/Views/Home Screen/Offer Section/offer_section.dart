@@ -103,7 +103,7 @@ class OfferCard extends StatelessWidget {
                 title,
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
-                  color: Colors.black, // Adjust color for better readability
+                  color: Colors.black, 
                 ),
               ),
               const SizedBox(height: 5),
@@ -111,7 +111,7 @@ class OfferCard extends StatelessWidget {
                 subtitle,
                 style: const TextStyle(
                   fontSize: 12,
-                  color: Colors.black, // Adjust color for better readability
+                  color: Colors.black,
                 ),
               ),
             ],

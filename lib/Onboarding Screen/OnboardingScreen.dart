@@ -143,7 +143,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               );
             },
           ),
-          // Dots indicator, arrow buttons, and skip button
           Positioned(
             bottom: 5,
             left: 16,
@@ -153,7 +152,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    // Left Arrow Button
                     IconButton(
                       onPressed: _navigateToPreviousPage,
                       icon: const Icon(Icons.arrow_back),
@@ -162,7 +160,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           ? Colors.grey[600]
                           : Colors.grey[300],
                     ),
-                    // Dots Indicator
                     Row(
                       children: List.generate(_slides.length, (index) {
                         return Container(
@@ -178,7 +175,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         );
                       }),
                     ),
-                    // Right Arrow Button
                     IconButton(
                       onPressed: _navigateToNextPage,
                       icon: const Icon(Icons.arrow_forward),

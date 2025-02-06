@@ -16,28 +16,25 @@ class _BannerSectionState extends State<BannerSection> {
     // 'assets/images/banner2.jpeg',
   ];
 
-  int _currentIndex = 0; // Tracks the current slide index
-  final CarouselSliderController _controller =
-      CarouselSliderController(); // Controller for carousel
+  int _currentIndex = 0;
+  final CarouselSliderController _controller = CarouselSliderController();
 
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        // Carousel Slider
         CarouselSlider(
-          carouselController: _controller, // Attach controller
+          carouselController: _controller,
           options: CarouselOptions(
-            height: 150, // Height of the carousel
-            autoPlay: true, // Enable automatic sliding
-            enlargeCenterPage: true, // Center slide appears larger
-            viewportFraction:
-                0.9, // Controls how much space each slide occupies
+            height: 150,
+            autoPlay: true,
+            enlargeCenterPage: true,
+            viewportFraction: 0.9,
             autoPlayInterval: const Duration(seconds: 3),
             onPageChanged: (index, reason) {
               setState(() {
-                _currentIndex = index; // Update the active index
+                _currentIndex = index;
               });
             },
           ),
@@ -54,7 +51,7 @@ class _BannerSectionState extends State<BannerSection> {
             );
           }).toList(),
         ),
-        const SizedBox(height: 10), // Space between carousel and indicators
+        const SizedBox(height: 10),
 
         // Dots Indicator
         Padding(
@@ -64,10 +61,9 @@ class _BannerSectionState extends State<BannerSection> {
             children: imagePaths.asMap().entries.map((entry) {
               return GestureDetector(
                 onTap: () {
-                  _controller
-                      .animateToPage(entry.key); // Change slide on dot tap
+                  _controller.animateToPage(entry.key);
                   setState(() {
-                    _currentIndex = entry.key; // Update active index
+                    _currentIndex = entry.key;
                   });
                 },
                 child: Container(
@@ -77,8 +73,8 @@ class _BannerSectionState extends State<BannerSection> {
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: _currentIndex == entry.key
-                        ? Colors.teal // Active dot color
-                        : Colors.grey.shade400, // Inactive dot color
+                        ? Colors.teal
+                        : Colors.grey.shade400,
                   ),
                 ),
               );

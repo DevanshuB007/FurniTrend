@@ -83,7 +83,7 @@ class ProfileScreen extends StatelessWidget {
                                 ),
                                 side: BorderSide(
                                     color: Colors.teal,
-                                    width: 2), // Outline color and thickness
+                                    width: 2), 
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 20, vertical: 10),
                               ),
@@ -92,7 +92,7 @@ class ProfileScreen extends StatelessWidget {
                                 style: GoogleFonts.dmSans(
                                   fontSize: 14,
                                   color: Colors
-                                      .teal, // Text color matching the outline
+                                      .teal, 
                                 ),
                               ),
                             ),

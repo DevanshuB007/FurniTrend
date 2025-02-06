@@ -22,28 +22,28 @@ class _DealsDayState extends State<DealsDay> {
               "₹15,999",
               "₹18,999",
               "-15%",
-              "assets/images/sofa.png", // Replace with actual image paths
+              "assets/images/sofa.png",
             ),
             _buildProductCard(
               "Wooden Wardrobe",
               "₹10,499",
               "₹12,499",
               "-16%",
-              "assets/images/sofa.png", // Replace with actual image paths
+              "assets/images/sofa.png", 
             ),
             _buildProductCard(
               "Modern Sofa",
               "₹15,999",
               "₹18,999",
               "-15%",
-              "assets/images/sofa.png", // Replace with actual image paths
+              "assets/images/sofa.png", 
             ),
             _buildProductCard(
               "Wooden Wardrobe",
               "₹10,499",
               "₹12,499",
               "-16%",
-              "assets/images/sofa.png", // Replace with actual image paths
+              "assets/images/sofa.png", 
             ),
           ]),
         ],

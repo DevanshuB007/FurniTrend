@@ -163,7 +163,7 @@ class ProductListingPage extends StatelessWidget {
                 ),
                 buildCategory(
                   "Study",
-                  Icons.desk,
+                  Icons.menu_book,
                   onTap: () {
                     Navigator.push(
                       context,

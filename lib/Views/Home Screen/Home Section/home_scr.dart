@@ -16,10 +16,9 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
 
-  // List of widgets to display based on the selected tab
   final List<Widget> _screens = [
-    const DashboardScr(), // Home Screen
-    const ProductListingPage(), // Category Screen
+    const DashboardScr(),
+    const ProductListingPage(), 
     ProfileScreen(),
   ];
 
@@ -32,15 +31,15 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _screens[_selectedIndex], // Display the selected screen
+      body: _screens[_selectedIndex], 
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.white,
-        currentIndex: _selectedIndex, // Track the selected index
+        currentIndex: _selectedIndex, 
         selectedItemColor: Colors.teal,
         unselectedItemColor: Colors.grey,
         showUnselectedLabels: true,
         type: BottomNavigationBarType.fixed,
-        onTap: _onItemTapped, // Handle tab selection
+        onTap: _onItemTapped,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home_outlined),

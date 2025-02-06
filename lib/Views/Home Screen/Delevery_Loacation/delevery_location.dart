@@ -99,7 +99,7 @@ class DeliveryLocationScreen extends StatelessWidget {
                 physics: NeverScrollableScrollPhysics(),
                 itemCount: cities.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 4, // Adjust for responsiveness
+                  crossAxisCount: 4, 
                   // crossAxisSpacing: 8,
                   mainAxisSpacing: 8,
                 ),

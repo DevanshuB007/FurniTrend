@@ -23,28 +23,28 @@ class _NewarrivalsState extends State<Newarrivals> {
               "₹1,215/mo",
               "₹1,587/mo",
               "-23%",
-              "assets/images/sofa.png", // Replace with actual image paths
+              "assets/images/sofa.png", 
             ),
             _buildProductCard(
               "Ella Fabric 3 Seater",
               "₹869/mo",
               "₹1,139/mo",
               "-23%",
-              "assets/images/sofa.png", // Replace with actual image paths
+              "assets/images/sofa.png",
             ),
             _buildProductCard(
               "Dune Upholstered Bed",
               "₹1,215/mo",
               "₹1,587/mo",
               "-23%",
-              "assets/images/sofa.png", // Replace with actual image paths
+              "assets/images/sofa.png", 
             ),
             _buildProductCard(
               "Ella Fabric 3 Seater",
               "₹869/mo",
               "₹1,139/mo",
               "-23%",
-              "assets/images/sofa.png", // Replace with actual image paths
+              "assets/images/sofa.png", 
             ),
           ]),
           const SizedBox(height: 16),

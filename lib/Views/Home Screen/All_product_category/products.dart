@@ -1151,7 +1151,6 @@ class _ProductsState extends State<Products> {
     );
   }
 
-  // Build Category Tab
   Widget _buildCategoryTab(String title) {
     bool isSelected = selectedCategory == title;
     return Padding(
@@ -1174,7 +1173,6 @@ class _ProductsState extends State<Products> {
     );
   }
 
-  // Build Subcategory Chip
   Widget _buildSubcategoryChip(String title) {
     bool isSelected = selectedSubcategories.contains(title);
     return Padding(
@@ -1212,7 +1210,6 @@ class _ProductsState extends State<Products> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Product Image
           Container(
             height: 120,
             decoration: BoxDecoration(
@@ -1225,7 +1222,6 @@ class _ProductsState extends State<Products> {
             ),
           ),
 
-          // Product Details
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(

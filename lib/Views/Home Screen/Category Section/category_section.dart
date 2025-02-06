@@ -19,7 +19,6 @@ class CategorySection extends StatelessWidget {
             height: 10,
           ),
 
-          // Grid Layout for Categories
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: GridView.count(
@@ -111,7 +110,6 @@ class CategorySection extends StatelessWidget {
                   ],
                 ),
 
-                // Repeat for other categories
                 Stack(
                   clipBehavior: Clip.none,
                   children: [
@@ -336,7 +334,6 @@ class CategorySection extends StatelessWidget {
                   ],
                 ),
 
-                // Add similar blocks for the remaining categories
               ],
             ),
           ),
