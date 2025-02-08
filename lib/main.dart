@@ -5,7 +5,9 @@ import 'package:furlenco/Views/Home%20Screen/All_product_category/products.dart'
 import 'package:furlenco/Views/Home%20Screen/Delevery_Loacation/delevery_location.dart';
 import 'package:furlenco/Views/Home%20Screen/Login_screen/login_scr.dart';
 import 'package:furlenco/Views/Home%20Screen/New_Arival_section/newarrivals.dart';
+import 'package:furlenco/Views/Home%20Screen/ProductDetailsPage/product_details.dart';
 import 'package:furlenco/Views/Home%20Screen/Product_category/produccateg.dart';
+import 'package:furlenco/Views/Home%20Screen/cart_Section/cart.dart';
 import 'package:furlenco/Views/Home%20Screen/profile_Screen/profile_scr.dart';
 
 void main() {
@@ -27,7 +29,7 @@ class MyApp extends StatelessWidget {
       ),
       // home: const MyHomePage(title: 'Flutter Demo Home Page'),
       home: OnboardingScreen(),
-      // home: Products(),
+      // home: ProductDetailsPage(),
     );
   }
 }

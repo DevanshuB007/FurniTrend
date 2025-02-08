@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:furlenco/Views/Home%20Screen/ProductDetailsPage/product_details.dart';
 
 class Products extends StatefulWidget {
   final String selectedCategory;
@@ -638,7 +639,6 @@ class _ProductsState extends State<Products> {
     "Price: High to Low",
   ];
 
-  // Selected sort option (initially null)
   String? selectedSortOption;
 
   void showSortBottomSheet(BuildContext context) {
@@ -1101,6 +1101,13 @@ class _ProductsState extends State<Products> {
                           entry['price'],
                           entry['deliveryTime'],
                           image: entry['image'],
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        ProductDetailsPage(name: entry['name'],)));
+                          },
                         );
                       },
                     ),
@@ -1116,7 +1123,6 @@ class _ProductsState extends State<Products> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              // Sort Button
               GestureDetector(
                 onTap: () => showSortBottomSheet(context),
                 child: Column(
@@ -1130,8 +1136,6 @@ class _ProductsState extends State<Products> {
                   ],
                 ),
               ),
-
-              // Filter Button
               GestureDetector(
                 onTap: () => showFilterBottomSheet(context),
                 child: Column(
@@ -1202,65 +1206,68 @@ class _ProductsState extends State<Products> {
     int price,
     String deliveryTime, {
     String? image,
+    VoidCallback? onTap,
   }) {
-    return Card(
-      color: Colors.white,
-      elevation: 4,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            height: 120,
-            decoration: BoxDecoration(
-              borderRadius:
-                  const BorderRadius.vertical(top: Radius.circular(8)),
-              image: DecorationImage(
-                image: AssetImage(image ?? 'assets/images/intro3.jpeg'),
-                fit: BoxFit.cover,
+    return GestureDetector(
+      onTap: onTap,
+      child: Card(
+        color: Colors.white,
+        elevation: 4,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              height: 120,
+              decoration: BoxDecoration(
+                borderRadius:
+                    const BorderRadius.vertical(top: Radius.circular(8)),
+                image: DecorationImage(
+                  image: AssetImage(image ?? 'assets/images/intro3.jpeg'),
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
-          ),
-
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                if (index % 2 == 0)
-                  Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                    decoration: BoxDecoration(
-                      color: Colors.orange,
-                      borderRadius: BorderRadius.circular(12),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  if (index % 2 == 0)
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 4),
+                      decoration: BoxDecoration(
+                        color: Colors.orange,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: const Text(
+                        'Z Rated',
+                        style: TextStyle(color: Colors.white, fontSize: 12),
+                      ),
                     ),
-                    child: const Text(
-                      'Z Rated',
-                      style: TextStyle(color: Colors.white, fontSize: 12),
-                    ),
+                  const SizedBox(height: 8),
+                  Text(
+                    productName,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
                   ),
-                const SizedBox(height: 8),
-                Text(
-                  productName,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  '${price.toString()}',
-                  style: TextStyle(fontSize: 16, color: Colors.black),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  deliveryTime,
-                  style: TextStyle(fontSize: 12, color: Colors.grey),
-                ),
-              ],
+                  const SizedBox(height: 4),
+                  Text(
+                    '${price.toString()}',
+                    style: TextStyle(fontSize: 16, color: Colors.black),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    deliveryTime,
+                    style: TextStyle(fontSize: 12, color: Colors.grey),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

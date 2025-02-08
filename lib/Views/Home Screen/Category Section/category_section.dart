@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:furlenco/Views/Home%20Screen/Delevery_Loacation/delevery_location.dart';
+import 'package:furlenco/Views/Home%20Screen/Product_category/produccateg.dart';
 import 'package:furlenco/Views/Home%20Screen/Search_Section/search_sec.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -18,7 +19,6 @@ class CategorySection extends StatelessWidget {
           SizedBox(
             height: 10,
           ),
-
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: GridView.count(
@@ -137,25 +137,36 @@ class CategorySection extends StatelessWidget {
                         ),
                         child: Padding(
                           padding: const EdgeInsets.all(16.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              const Text(
-                                "Furniture with Flexibility!",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w500,
+                          child: GestureDetector(
+                            onTap: () {
+                              // Navigator.push(
+                              //   context,
+                              //   MaterialPageRoute(
+                              //     builder: (context) =>
+                              //         const ProductListingPage(),
+                              //   ),
+                              // );
+                            },
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                const Text(
+                                  "Furniture with Flexibility!",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w500,
+                                  ),
                                 ),
-                              ),
-                              const SizedBox(height: 8),
-                              Expanded(
-                                child: Image.asset(
-                                  "assets/images/chair.png",
-                                  fit: BoxFit.contain,
+                                const SizedBox(height: 8),
+                                Expanded(
+                                  child: Image.asset(
+                                    "assets/images/chair.png",
+                                    fit: BoxFit.contain,
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -333,7 +344,6 @@ class CategorySection extends StatelessWidget {
                     ),
                   ],
                 ),
-
               ],
             ),
           ),

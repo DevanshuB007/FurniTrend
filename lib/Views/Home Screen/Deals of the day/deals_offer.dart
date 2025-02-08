@@ -8,41 +8,71 @@ class DealsOffer extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        toolbarHeight: 100,
+        scrolledUnderElevation: 0,
         elevation: 0,
         backgroundColor: Colors.white,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
+        automaticallyImplyLeading: false,
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
-            Text(
-              'Delivery to',
-              style: TextStyle(fontSize: 12, color: Colors.grey),
-            ),
-            Text(
-              '132001',
-              style: TextStyle(fontSize: 16, color: Colors.black),
+          children: [
+            Container(
+              padding: const EdgeInsets.all(6.0),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(40),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.2),
+                    spreadRadius: 2,
+                    blurRadius: 4,
+                  ),
+                ],
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Row(
+                      children: [
+                        IconButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          icon: const Icon(
+                            Icons.arrow_back,
+                            color: Colors.grey,
+                            size: 30,
+                          ),
+                        ),
+                        const Text(
+                          "Delivery to\n 520001",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 12),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: const [
+                        Icon(Icons.search, color: Colors.grey),
+                        SizedBox(width: 16),
+                        Icon(Icons.favorite_border, color: Colors.grey),
+                        SizedBox(width: 16),
+                        Icon(Icons.shopping_cart, color: Colors.grey),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.search, color: Colors.black),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: const Icon(Icons.favorite_border, color: Colors.black),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: const Icon(Icons.shopping_cart_outlined, color: Colors.black),
-            onPressed: () {},
-          ),
-        ],
       ),
       body: Column(
         children: [
