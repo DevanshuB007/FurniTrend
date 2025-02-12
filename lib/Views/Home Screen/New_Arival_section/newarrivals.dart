@@ -120,7 +120,12 @@ class ProductCard extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ProductDetailsPage(name: product["title"]!),
+            builder: (context) => ProductDetailsPage(
+              name: product["title"]!,
+              price: product["price"]!,
+              image: product["imagePath"]!,
+              deliveryTime: "2-3 days", // Example value
+            ),
           ),
         );
       },

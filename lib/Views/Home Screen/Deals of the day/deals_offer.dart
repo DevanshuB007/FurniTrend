@@ -481,14 +481,14 @@ class DealsOffer extends StatelessWidget {
                     entry['deliveryTime'],
                     image: entry['image'],
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ProductDetailsPage(
-                            name: entry['name'],
-                          ),
-                        ),
-                      );
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //     builder: (context) => ProductDetailsPage(
+                      //       name: entry['name'],
+                      //     ),
+                      //   ),
+                      // );
                     },
                   );
                 },

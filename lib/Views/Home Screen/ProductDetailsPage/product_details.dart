@@ -11,16 +11,17 @@ import 'package:share_plus/share_plus.dart';
 
 class ProductDetailsPage extends StatefulWidget {
   final String name;
+  final String price;
+  final String image;
+  final String deliveryTime;
+
   const ProductDetailsPage({
-    Key? key,
+    super.key,
     required this.name,
-    // required this.name,
-    // required price,
-    // required deliveryTime,
-    // required category,
-    // required subCategory,
-    // required image,
-  }) : super(key: key);
+    required this.price,
+    required this.image,
+    required this.deliveryTime,
+  });
 
   @override
   _ProductDetailsPageState createState() => _ProductDetailsPageState();
@@ -322,12 +323,14 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Text("₹20,000",
-                        style: GoogleFonts.dmSans(
-                          fontSize: 16,
-                          color: Colors.teal,
-                          fontWeight: FontWeight.bold,
-                        )),
+                    Text(
+                      '₹${widget.price}',
+                      style: GoogleFonts.dmSans(
+                        fontSize: 16,
+                        color: Colors.teal,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ],
                 ),
               ),

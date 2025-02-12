@@ -994,7 +994,6 @@ class _ProductsState extends State<Products> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         toolbarHeight: 100,
-        
         scrolledUnderElevation: 0,
         elevation: 0,
         backgroundColor: Colors.white,
@@ -1119,7 +1118,8 @@ class _ProductsState extends State<Products> {
                         return _buildProductCard(
                           index,
                           entry['name'],
-                          entry['price'],
+                          entry['price']
+                              .toString(), // Convert price to String if it's an int
                           entry['deliveryTime'],
                           image: entry['image'],
                           onTap: () {
@@ -1128,6 +1128,10 @@ class _ProductsState extends State<Products> {
                               MaterialPageRoute(
                                 builder: (context) => ProductDetailsPage(
                                   name: entry['name'],
+                                  price: entry['price']
+                                      .toString(), // Convert to String
+                                  image: entry['image'],
+                                  deliveryTime: entry['deliveryTime'],
                                 ),
                               ),
                             );
@@ -1227,7 +1231,7 @@ class _ProductsState extends State<Products> {
   Widget _buildProductCard(
     int index,
     String productName,
-    int price,
+    String price, // Changed from int to String
     String deliveryTime, {
     String? image,
     VoidCallback? onTap,
@@ -1279,7 +1283,7 @@ class _ProductsState extends State<Products> {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    '${price.toString()}',
+                    '₹$price', // Display price properly
                     style: TextStyle(fontSize: 16, color: Colors.black),
                   ),
                   const SizedBox(height: 4),

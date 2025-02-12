@@ -15,7 +15,7 @@ import 'package:furlenco/main.dart' as main_app;
 void main() { 
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(main_app.MyApp());
+    await tester.pumpWidget(main_app.MyApp(showOnboarding: true,));
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);
