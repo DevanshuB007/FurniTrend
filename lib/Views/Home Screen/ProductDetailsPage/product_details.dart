@@ -4,23 +4,33 @@ import 'package:flutter/material.dart';
 import 'package:furlenco/Views/Home%20Screen/Deals%20of%20the%20day/deals_day.dart';
 import 'package:furlenco/Views/Home%20Screen/New_Arival_section/newarrivals.dart';
 import 'package:furlenco/Views/Home%20Screen/ProductDetailsPage/fullscreenimage.dart';
+import 'package:furlenco/Views/Home%20Screen/Search_Bar/search_bar.dart';
+import 'package:furlenco/Views/Home%20Screen/cart_Section/cart.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:share_plus/share_plus.dart';
 
 class ProductDetailsPage extends StatefulWidget {
   final String name;
-  const ProductDetailsPage({Key? key, required this.name}) : super(key: key);
+  const ProductDetailsPage({
+    Key? key,
+    required this.name,
+    // required this.name,
+    // required price,
+    // required deliveryTime,
+    // required category,
+    // required subCategory,
+    // required image,
+  }) : super(key: key);
 
   @override
   _ProductDetailsPageState createState() => _ProductDetailsPageState();
 }
 
 class _ProductDetailsPageState extends State<ProductDetailsPage> {
-  int _currentIndex = 0; // Tracks current slider index
-  bool isLiked = false; // Tracks the like button state
-  late PageController _pageController; // PageController for PageView
+  int _currentIndex = 0;
+  bool isLiked = false;
+  late PageController _pageController;
 
-  // List of images for the slider
   final List<String> images = [
     'assets/images/bed.webp',
     'assets/images/intro2.jpg',
@@ -38,7 +48,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
 
   @override
   void dispose() {
-    _pageController.dispose(); // Dispose of PageController
+    _pageController.dispose();
     super.dispose();
   }
 
@@ -98,12 +108,30 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
-                      children: const [
-                        Icon(Icons.search, color: Colors.grey),
+                      children: [
+                        InkWell(
+                          child: Icon(Icons.search, color: Colors.grey),
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Search()));
+                          },
+                        ),
                         SizedBox(width: 16),
                         Icon(Icons.favorite_border, color: Colors.grey),
                         SizedBox(width: 16),
-                        Icon(Icons.shopping_cart, color: Colors.grey),
+                        InkWell(
+                          child: Icon(Icons.shopping_cart, color: Colors.grey),
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => CartScreen(
+                                          title: widget.name,
+                                        )));
+                          },
+                        ),
                       ],
                     ),
                   ),
@@ -124,7 +152,15 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                   itemBuilder: (context, index, realIndex) {
                     return GestureDetector(
                       onTap: () {
-                        Share.share('Check out this product: ${images[index]}');
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => FullscreenImage(
+                              initialIndex: _currentIndex,
+                              images: images,
+                            ),
+                          ),
+                        );
                       },
                       child: Image.asset(
                         images[index],
@@ -390,7 +426,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Icon(Icons.delivery_dining,
+                          Icon(Icons.local_shipping_outlined,
                               color: Colors.black, size: 40),
                           SizedBox(
                             width: 10,
@@ -519,19 +555,32 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                             onTap: () {
                               Navigator.pop(context);
                             },
-                            child: Row(
-                              children: [
-                                Text(
-                                  'ADD TO CART',
-                                  style: GoogleFonts.dmSans(
-                                    fontSize: 16,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
+                            child: GestureDetector(
+                              child: Row(
+                                children: [
+                                  InkWell(
+                                    child: Text(
+                                      'ADD TO CART',
+                                      style: GoogleFonts.dmSans(
+                                        fontSize: 16,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => CartScreen(
+                                                    title: widget.name,
+                                                  )));
+                                    },
                                   ),
-                                ),
-                                SizedBox(width: 10),
-                                Icon(Icons.arrow_forward, color: Colors.white),
-                              ],
+                                  SizedBox(width: 10),
+                                  Icon(Icons.arrow_forward,
+                                      color: Colors.white),
+                                ],
+                              ),
                             ),
                           ),
                         ),

@@ -14,7 +14,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
 
-  final List<Map<String, String>> _slides = [
+  final List<Map<String, String>> slides = [
     {
       'image': 'assets/images/intro1.jpg',
       'title': "Furniture you'll be proud of",
@@ -57,7 +57,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   }
 
   void _navigateToNextPage() {
-    if (_currentPage < _slides.length - 1) {
+    if (_currentPage < slides.length - 1) {
       _pageController.nextPage(
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeInOut,
@@ -89,7 +89,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           // PageView for slides
           PageView.builder(
             controller: _pageController,
-            itemCount: _slides.length,
+            itemCount: slides.length,
             onPageChanged: (index) {
               setState(() {
                 _currentPage = index;
@@ -104,7 +104,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     child: Container(
                       decoration: BoxDecoration(
                         image: DecorationImage(
-                          image: AssetImage(_slides[index]['image']!),
+                          image: AssetImage(slides[index]['image']!),
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -117,7 +117,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       child: Column(
                         children: [
                           Text(
-                            _slides[index]['title']!,
+                            slides[index]['title']!,
                             textAlign: TextAlign.center,
                             style: GoogleFonts.dmSans(
                               color: Colors.teal,
@@ -127,7 +127,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           ),
                           const SizedBox(height: 16),
                           Text(
-                            _slides[index]['description']!,
+                            slides[index]['description']!,
                             textAlign: TextAlign.center,
                             style: GoogleFonts.lora(
                               color: Colors.teal,
@@ -161,7 +161,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           : Colors.grey[300],
                     ),
                     Row(
-                      children: List.generate(_slides.length, (index) {
+                      children: List.generate(slides.length, (index) {
                         return Container(
                           margin: const EdgeInsets.symmetric(horizontal: 4.0),
                           width: 10,
@@ -179,7 +179,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       onPressed: _navigateToNextPage,
                       icon: const Icon(Icons.arrow_forward),
                       iconSize: 36,
-                      color: _currentPage < _slides.length - 1
+                      color: _currentPage < slides.length - 1
                           ? Colors.grey[600]
                           : Colors.grey[300],
                     ),

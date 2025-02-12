@@ -1,10 +1,375 @@
 import 'package:flutter/material.dart';
+import 'package:furlenco/Views/Home%20Screen/ProductDetailsPage/product_details.dart';
+import 'package:furlenco/Views/Home%20Screen/Search_Bar/search_bar.dart';
+import 'package:furlenco/Views/Home%20Screen/cart_Section/cart.dart';
 
 class DealsOffer extends StatelessWidget {
   const DealsOffer({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final List<Map<String, dynamic>> products = [
+      // Bedroom Screen
+      {
+        'name': "Queen Bed",
+        'price': 5000,
+        'deliveryTime': "Sunday 15, 2024",
+        'image': 'assets/images/bed.webp',
+      },
+      {
+        'name': "Storage Bed",
+        'price': 5000,
+        'deliveryTime': "Sunday 15, 2024",
+        'image': 'assets/images/bed.webp',
+      },
+      {
+        'name': "King Bed",
+        'price': 5000,
+        'deliveryTime': "Sunday 15, 2024",
+        'image': 'assets/images/bed.webp',
+      },
+      {
+        'name': "Single Bed",
+        'price': 5000,
+        'deliveryTime': "Sunday 15, 2024",
+        'image': 'assets/images/bed.webp',
+      },
+      {
+        'name': "Bedside Tables",
+        'price': 5000,
+        'deliveryTime': "Sunday 15, 2024",
+        'image': 'assets/images/bed.webp',
+      },
+    ];
+    final List<Map<String, dynamic>> filteredProducts =
+        products; // Define filteredProducts
+
+    final List<String> sortOptions = [
+      "Featured",
+      "Name A-Z",
+      "Name Z-A",
+      "Price: Low to High",
+      "Price: High to Low",
+    ];
+
+    String? selectedSortOption;
+
+    void showSortBottomSheet(BuildContext context) {
+      showModalBottomSheet(
+        context: context,
+        backgroundColor: Colors.white,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
+        ),
+        builder: (BuildContext context) {
+          return StatefulBuilder(
+            builder: (context, setState) {
+              return Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text("Sort by",
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold)),
+                        IconButton(
+                          icon: const Icon(Icons.close),
+                          onPressed: () => Navigator.pop(context),
+                        ),
+                      ],
+                    ),
+                    const Divider(),
+                    Column(
+                      children: sortOptions.map((option) {
+                        return GestureDetector(
+                          onTap: () {
+                            setState(() => selectedSortOption = option);
+                          },
+                          child: Container(
+                            width: double.infinity,
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 12, horizontal: 16),
+                            margin: const EdgeInsets.symmetric(vertical: 4),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                if (selectedSortOption == option)
+                                  const Icon(Icons.check_circle,
+                                      color: Colors.teal),
+                                Text(option,
+                                    style: const TextStyle(fontSize: 16)),
+                              ],
+                            ),
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                    if (selectedSortOption != null)
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: SizedBox(
+                          width: double.infinity,
+                          child: ElevatedButton(
+                            onPressed: () => Navigator.pop(context),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.teal,
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 12, horizontal: 24),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Text(
+                                  "Show Results",
+                                  style: TextStyle(
+                                      fontSize: 16, color: Colors.white),
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Icon(
+                                  Icons.arrow_forward,
+                                  color: Colors.white,
+                                  size: 25,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                  ],
+                ),
+              );
+            },
+          );
+        },
+      );
+    }
+
+    void showFilterBottomSheet(BuildContext context) {
+      final categories = [
+        "Sub-Category",
+        "Price Range",
+        "Badge",
+        "Storage",
+        "Config type",
+        "Color",
+        "Seating Capacity",
+        "Set Type"
+      ];
+
+      final Map<String, List<String>> subCategoryData = {
+        "Sub-Category": [
+          "Multifunctional",
+          "King Beds",
+          "Bedroom Combos",
+          "Storage Beds",
+          "Beds without Mattress",
+          "Sofa Sets",
+          "3 Seater",
+          "Queen Beds",
+          "Sofa Cum Bed",
+          "CentreTables",
+          "L Shape",
+        ],
+        "Price Range": [
+          "Under ₹5,000",
+          "₹5,000 - ₹10,000",
+          "₹10,000 - ₹20,000",
+          "₹20,000 - ₹50,000",
+          "Above ₹50,000",
+        ],
+        "Badge": [
+          "New Arrivals",
+          "Best Sellers",
+          "Limited Time Offers",
+        ],
+        "Storage": [
+          "With Storage",
+          "Without Storage",
+        ],
+        "Config type": [
+          "Single",
+          "Double",
+          "Triple",
+          "Customizable",
+        ],
+        "Color": [
+          "Red",
+          "Blue",
+          "Green",
+          "Yellow",
+          "Black",
+          "White",
+        ],
+        "Seating Capacity": [
+          "1 Seater",
+          "2 Seater",
+          "3 Seater",
+          "4 Seater",
+        ],
+        "Set Type": [
+          "Living Room",
+          "Bedroom",
+          "Dining Room",
+          "Outdoor",
+        ],
+      };
+
+      String selectedCategory = categories[0];
+      String? selectedSubCategory;
+
+      showModalBottomSheet(
+        context: context,
+        isScrollControlled: true,
+        backgroundColor: Colors.white,
+        shape: const RoundedRectangleBorder(),
+        builder: (BuildContext context) {
+          return StatefulBuilder(
+            builder: (context, setState) {
+              final subCategories = subCategoryData[selectedCategory] ?? [];
+              return SizedBox(
+                height: MediaQuery.of(context).size.height * 0.9,
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text(
+                            "Filter by",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          IconButton(
+                            icon: const Icon(Icons.close),
+                            onPressed: () => Navigator.pop(context),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const Divider(),
+                    Expanded(
+                      child: Row(
+                        children: [
+                          Expanded(
+                            flex: 2,
+                            child: ListView.builder(
+                              itemCount: categories.length,
+                              itemBuilder: (context, index) {
+                                final category = categories[index];
+                                return GestureDetector(
+                                  onTap: () => setState(() {
+                                    selectedCategory = category;
+                                    selectedSubCategory = null;
+                                  }),
+                                  child: Container(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 12, horizontal: 16),
+                                    color: selectedCategory == category
+                                        ? Colors.grey[200]
+                                        : Colors.transparent,
+                                    child: Text(
+                                      category,
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: selectedCategory == category
+                                            ? FontWeight.bold
+                                            : FontWeight.normal,
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                          const VerticalDivider(width: 1),
+                          Expanded(
+                            flex: 4,
+                            child: ListView.builder(
+                              itemCount: subCategories.length,
+                              itemBuilder: (context, index) {
+                                final subCategory = subCategories[index];
+                                return GestureDetector(
+                                  onTap: () => setState(() {
+                                    selectedSubCategory = subCategory;
+                                  }),
+                                  child: Container(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 12, horizontal: 16),
+                                    child: Row(
+                                      children: [
+                                        Radio<String>(
+                                          value: subCategory,
+                                          groupValue: selectedSubCategory,
+                                          onChanged: (value) {
+                                            setState(() {
+                                              selectedSubCategory = value;
+                                            });
+                                          },
+                                        ),
+                                        Text(
+                                          subCategory,
+                                          style: const TextStyle(fontSize: 14),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: ElevatedButton(
+                        onPressed: selectedSubCategory == null
+                            ? null
+                            : () {
+                                Navigator.pop(context);
+                              },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.teal,
+                          disabledBackgroundColor: Colors.grey[300],
+                          padding: const EdgeInsets.symmetric(vertical: 12),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const [
+                            Text(
+                              "SHOW RESULTS",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(width: 8),
+                            Icon(Icons.arrow_forward, color: Colors.white),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+          );
+        },
+      );
+    }
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -42,13 +407,13 @@ class DealsOffer extends StatelessWidget {
                           onPressed: () {
                             Navigator.pop(context);
                           },
-                          icon: const Icon(
+                          icon: Icon(
                             Icons.arrow_back,
                             color: Colors.grey,
                             size: 30,
                           ),
                         ),
-                        const Text(
+                        Text(
                           "Delivery to\n 520001",
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 12),
@@ -59,12 +424,30 @@ class DealsOffer extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
-                      children: const [
-                        Icon(Icons.search, color: Colors.grey),
+                      children: [
+                        InkWell(
+                          child: Icon(Icons.search, color: Colors.grey),
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Search()));
+                          },
+                        ),
                         SizedBox(width: 16),
                         Icon(Icons.favorite_border, color: Colors.grey),
                         SizedBox(width: 16),
-                        Icon(Icons.shopping_cart, color: Colors.grey),
+                        InkWell(
+                          child: Icon(Icons.shopping_cart, color: Colors.grey),
+                          onTap: () {
+                            // Navigator.push(
+                            //     context,
+                            //     MaterialPageRoute(
+                            //         builder: (context) => CartScreen(
+                            //               title: '',
+                            //             )));
+                          },
+                        ),
                       ],
                     ),
                   ),
@@ -74,77 +457,81 @@ class DealsOffer extends StatelessWidget {
           ],
         ),
       ),
-      body: Column(
-        children: [
-          // Category Tabs
-          // SingleChildScrollView(
-          //   scrollDirection: Axis.horizontal,
-          //   padding: const EdgeInsets.symmetric(horizontal: 8),
-          //   child: Row(
-          //     children: [
-          //       _buildTab("Bedroom", true),
-          //       _buildTab("Living Room", false),
-          //       _buildTab("Appliances", false),
-          //       _buildTab("Queen Beds", false),
-          //       _buildTab("Storage Beds", false),
-          //     ],
-          //   ),
-          // ),
-          const SizedBox(height: 8),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+        child: Column(
+          children: [
+            Expanded(
+              child: GridView.builder(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 0.7,
+                  crossAxisSpacing: 8,
+                  mainAxisSpacing: 8,
+                ),
+                itemCount: filteredProducts.length,
+                itemBuilder: (context, index) {
+                  var entry = filteredProducts[index];
 
-          // Filter Tags
-          // SingleChildScrollView(
-          //   scrollDirection: Axis.horizontal,
-          //   padding: const EdgeInsets.symmetric(horizontal: 8),
-          //   child: Row(
-          //     children: [
-          //       _buildFilterTag("Queen Beds"),
-          //       _buildFilterTag("Storage Beds"),
-          //       _buildFilterTag("King Beds"),
-          //     ],
-          //   ),
-          // ),
-          const SizedBox(height: 8),
-
-          // Product Grid
-          Expanded(
-            child: GridView.builder(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 0.7,
-                crossAxisSpacing: 5,
-                mainAxisSpacing: 8,
+                  return _buildProductCard(
+                    index,
+                    entry['name'],
+                    entry['price'],
+                    entry['deliveryTime'],
+                    image: entry['image'],
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ProductDetailsPage(
+                            name: entry['name'],
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                },
               ),
-              itemCount: 6,
-              itemBuilder: (context, index) {
-                return _buildProductCard(index);
-              },
             ),
-          ),
-        ],
+          ],
+        ),
       ),
-
-      // Bottom Navigation Bar
       bottomNavigationBar: BottomAppBar(
         color: Colors.white,
         elevation: 8,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Column(
-              children: [
-                Icon(Icons.swap_vert_outlined),
-                Text("Sort"),
-              ],
-            ),
-            Column(
-              children: [
-                Icon(Icons.filter_list),
-                Text("Fillter"),
-              ],
-            )
-          ],
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 2.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              GestureDetector(
+                onTap: () => showSortBottomSheet(context),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.swap_vert_outlined,
+                        size: 28, color: Colors.black54),
+                    const SizedBox(height: 4),
+                    const Text("Sort",
+                        style: TextStyle(fontSize: 14, color: Colors.black54)),
+                  ],
+                ),
+              ),
+              GestureDetector(
+                onTap: () => showFilterBottomSheet(context),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.filter_list, size: 28, color: Colors.black54),
+                    const SizedBox(height: 4),
+                    const Text("Filter",
+                        style: TextStyle(fontSize: 14, color: Colors.black54)),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -176,67 +563,74 @@ class DealsOffer extends StatelessWidget {
     );
   }
 
-  Widget _buildProductCard(int index) {
-    return Card(
-      color: Colors.white,
-      elevation: 4,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Product Image
-          Container(
-            height: 120,
-            decoration: BoxDecoration(
-              borderRadius:
-                  const BorderRadius.vertical(top: Radius.circular(8)),
-              image: DecorationImage(
-                image: AssetImage('assets/images/sofa.png'),
-                fit: BoxFit.cover,
+  Widget _buildProductCard(
+    int index,
+    String productName,
+    int price,
+    String deliveryTime, {
+    String? image,
+    VoidCallback? onTap,
+  }) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Card(
+        color: Colors.white,
+        elevation: 4,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              height: 120,
+              decoration: BoxDecoration(
+                borderRadius:
+                    const BorderRadius.vertical(top: Radius.circular(8)),
+                image: DecorationImage(
+                  image: AssetImage(image ?? 'assets/images/intro3.jpeg'),
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
-          ),
-
-          // Product Details
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                if (index % 2 == 0)
-                  Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                    decoration: BoxDecoration(
-                      color: Colors.orange,
-                      borderRadius: BorderRadius.circular(12),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  if (index % 2 == 0)
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 4),
+                      decoration: BoxDecoration(
+                        color: Colors.orange,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: const Text(
+                        'Z Rated',
+                        style: TextStyle(color: Colors.white, fontSize: 12),
+                      ),
                     ),
-                    child: const Text(
-                      'Z Rated',
-                      style: TextStyle(color: Colors.white, fontSize: 12),
-                    ),
+                  const SizedBox(height: 8),
+                  Text(
+                    productName,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
                   ),
-                const SizedBox(height: 8),
-                const Text(
-                  "Blanca Engineered Wood Queen Bed",
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(height: 4),
-                const Text(
-                  "₹869/mo",
-                  style: TextStyle(fontSize: 16, color: Colors.black),
-                ),
-                const SizedBox(height: 4),
-                const Text(
-                  "Delivery by 31 Jan",
-                  style: TextStyle(fontSize: 12, color: Colors.grey),
-                ),
-              ],
+                  const SizedBox(height: 4),
+                  Text(
+                    '${price.toString()}',
+                    style: TextStyle(fontSize: 16, color: Colors.black),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    deliveryTime,
+                    style: TextStyle(fontSize: 12, color: Colors.grey),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

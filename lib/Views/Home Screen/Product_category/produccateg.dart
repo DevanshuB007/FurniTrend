@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:furlenco/Views/Home%20Screen/All_product_category/products.dart';
 import 'package:furlenco/Views/Home%20Screen/Banner%20Section/banner_section.dart';
+import 'package:furlenco/Views/Home%20Screen/Search_Bar/search_bar.dart';
 import 'package:furlenco/Views/Home%20Screen/Search_Section/search_sec.dart';
+import 'package:furlenco/Views/Home%20Screen/cart_Section/cart.dart';
 
 class ProductListingPage extends StatelessWidget {
   const ProductListingPage({super.key});
@@ -31,40 +33,53 @@ class ProductListingPage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                    child: Row(
-                      children: [
-                        IconButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          icon: Icon(
-                            Icons.arrow_back,
-                            color: Colors.grey,
-                            size: 30,
-                          ),
+                  Row(
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          // Navigator.pop(context);
+                        },
+                        icon: Icon(
+                          Icons.arrow_back,
+                          color: Colors.grey,
+                          size: 30,
                         ),
-                        // SizedBox(width: 8),
-                        Text(
-                          "Delivery to\n 520001",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 12),
-                        ),
-                      ],
-                    ),
+                      ),
+                      // SizedBox(width: 8),
+                      Text(
+                        "Delivery to\n 520001",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 12),
+                      ),
+                    ],
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
-                      children: const [
-                        Icon(Icons.search, color: Colors.grey),
+                      children: [
+                        InkWell(
+                          child: Icon(Icons.search, color: Colors.grey),
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Search()));
+                          },
+                        ),
                         SizedBox(width: 16),
                         Icon(Icons.favorite_border, color: Colors.grey),
                         SizedBox(width: 16),
-                        Icon(Icons.shopping_cart, color: Colors.grey),
+                        InkWell(
+                          child: Icon(Icons.shopping_cart, color: Colors.grey),
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => CartScreen(
+                                          title: '',
+                                        )));
+                          },
+                        ),
                       ],
                     ),
                   ),

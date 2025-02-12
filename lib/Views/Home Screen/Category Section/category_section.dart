@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:furlenco/Views/Home%20Screen/All_product_category/products.dart';
 import 'package:furlenco/Views/Home%20Screen/Delevery_Loacation/delevery_location.dart';
 import 'package:furlenco/Views/Home%20Screen/Product_category/produccateg.dart';
 import 'package:furlenco/Views/Home%20Screen/Search_Section/search_sec.dart';
@@ -139,13 +140,14 @@ class CategorySection extends StatelessWidget {
                           padding: const EdgeInsets.all(16.0),
                           child: GestureDetector(
                             onTap: () {
-                              // Navigator.push(
-                              //   context,
-                              //   MaterialPageRoute(
-                              //     builder: (context) =>
-                              //         const ProductListingPage(),
-                              //   ),
-                              // );
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const Products(
+                                    selectedCategory: 'Bedroom',
+                                  ),
+                                ),
+                              );
                             },
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:furlenco/Views/Home%20Screen/ProductDetailsPage/product_details.dart';
+import 'package:furlenco/Views/Home%20Screen/Search_Bar/search_bar.dart';
+import 'package:furlenco/Views/Home%20Screen/cart_Section/cart.dart';
 
 class Products extends StatefulWidget {
   final String selectedCategory;
@@ -992,6 +994,7 @@ class _ProductsState extends State<Products> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         toolbarHeight: 100,
+        
         scrolledUnderElevation: 0,
         elevation: 0,
         backgroundColor: Colors.white,
@@ -1042,12 +1045,30 @@ class _ProductsState extends State<Products> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
-                      children: const [
-                        Icon(Icons.search, color: Colors.grey),
+                      children: [
+                        InkWell(
+                          child: Icon(Icons.search, color: Colors.grey),
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Search()));
+                          },
+                        ),
                         SizedBox(width: 16),
                         Icon(Icons.favorite_border, color: Colors.grey),
                         SizedBox(width: 16),
-                        Icon(Icons.shopping_cart, color: Colors.grey),
+                        InkWell(
+                          child: Icon(Icons.shopping_cart, color: Colors.grey),
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => CartScreen(
+                                          title: '',
+                                        )));
+                          },
+                        ),
                       ],
                     ),
                   ),
@@ -1103,10 +1124,13 @@ class _ProductsState extends State<Products> {
                           image: entry['image'],
                           onTap: () {
                             Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        ProductDetailsPage(name: entry['name'],)));
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ProductDetailsPage(
+                                  name: entry['name'],
+                                ),
+                              ),
+                            );
                           },
                         );
                       },

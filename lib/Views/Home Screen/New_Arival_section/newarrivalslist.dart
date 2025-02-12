@@ -1,10 +1,49 @@
 import 'package:flutter/material.dart';
+import 'package:furlenco/Views/Home%20Screen/ProductDetailsPage/product_details.dart';
+import 'package:furlenco/Views/Home%20Screen/Search_Bar/search_bar.dart';
+import 'package:furlenco/Views/Home%20Screen/cart_Section/cart.dart';
 
 class Newarrivalslist extends StatelessWidget {
   const Newarrivalslist({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final List<Map<String, dynamic>> products = [
+      // Bedroom Screen
+      {
+        'name': "Queen Bed",
+        'price': 5000,
+        'deliveryTime': "Sunday 15, 2024",
+        'image': 'assets/images/bed.webp',
+      },
+      {
+        'name': "Storage Bed",
+        'price': 5000,
+        'deliveryTime': "Sunday 15, 2024",
+        'image': 'assets/images/bed.webp',
+      },
+      {
+        'name': "King Bed",
+        'price': 5000,
+        'deliveryTime': "Sunday 15, 2024",
+        'image': 'assets/images/bed.webp',
+      },
+      {
+        'name': "Single Bed",
+        'price': 5000,
+        'deliveryTime': "Sunday 15, 2024",
+        'image': 'assets/images/bed.webp',
+      },
+      {
+        'name': "Bedside Tables",
+        'price': 5000,
+        'deliveryTime': "Sunday 15, 2024",
+        'image': 'assets/images/bed.webp',
+      },
+    ];
+    final List<Map<String, dynamic>> filteredProducts =
+        products; // Define filteredProducts
+
     final List<String> sortOptions = [
       "Featured",
       "Name A-Z",
@@ -385,12 +424,30 @@ class Newarrivalslist extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
-                      children: const [
-                        Icon(Icons.search, color: Colors.grey),
+                      children: [
+                        InkWell(
+                          child: Icon(Icons.search, color: Colors.grey),
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Search()));
+                          },
+                        ),
                         SizedBox(width: 16),
                         Icon(Icons.favorite_border, color: Colors.grey),
                         SizedBox(width: 16),
-                        Icon(Icons.shopping_cart, color: Colors.grey),
+                        InkWell(
+                          child: Icon(Icons.shopping_cart, color: Colors.grey),
+                          onTap: () {
+                            // Navigator.push(
+                            //     context,
+                            //     MaterialPageRoute(
+                            //         builder: (context) => CartScreen(
+                            //               title: '',
+                            //             )));
+                          },
+                        ),
                       ],
                     ),
                   ),
@@ -400,54 +457,45 @@ class Newarrivalslist extends StatelessWidget {
           ],
         ),
       ),
-      body: Column(
-        children: [
-          // Category Tabs
-          // SingleChildScrollView(
-          //   scrollDirection: Axis.horizontal,
-          //   padding: const EdgeInsets.symmetric(horizontal: 8),
-          //   child: Row(
-          //     children: [
-          //       _buildTab("Bedroom", true),
-          //       _buildTab("Living Room", false),
-          //       _buildTab("Appliances", false),
-          //       _buildTab("Queen Beds", false),
-          //       _buildTab("Storage Beds", false),
-          //     ],
-          //   ),
-          // ),
-          const SizedBox(height: 8),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+        child: Column(
+          children: [
+            Expanded(
+              child: GridView.builder(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 0.7,
+                  crossAxisSpacing: 8,
+                  mainAxisSpacing: 8,
+                ),
+                itemCount: filteredProducts.length,
+                itemBuilder: (context, index) {
+                  var entry = filteredProducts[index];
 
-          // Filter Tags
-          // SingleChildScrollView(
-          //   scrollDirection: Axis.horizontal,
-          //   padding: const EdgeInsets.symmetric(horizontal: 8),
-          //   child: Row(
-          //     children: [
-          //       _buildFilterTag("Queen Beds"),
-          //       _buildFilterTag("Storage Beds"),
-          //       _buildFilterTag("King Beds"),
-          //     ],
-          //   ),
-          // ),
-          const SizedBox(height: 8),
-
-          Expanded(
-            child: GridView.builder(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 0.7,
-                crossAxisSpacing: 5,
-                mainAxisSpacing: 8,
+                  return _buildProductCard(
+                    index,
+                    entry['name'],
+                    entry['price'],
+                    entry['deliveryTime'],
+                    image: entry['image'],
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ProductDetailsPage(
+                            name: entry['name'],
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                },
               ),
-              itemCount: 6,
-              itemBuilder: (context, index) {
-                return _buildProductCard(index);
-              },
             ),
-          ),
-        ],
+          ],
+        ),
       ),
       bottomNavigationBar: BottomAppBar(
         color: Colors.white,
@@ -515,64 +563,74 @@ class Newarrivalslist extends StatelessWidget {
     );
   }
 
-  Widget _buildProductCard(int index) {
-    return Card(
-      color: Colors.white,
-      elevation: 4,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            height: 120,
-            decoration: BoxDecoration(
-              borderRadius:
-                  const BorderRadius.vertical(top: Radius.circular(8)),
-              image: DecorationImage(
-                image: AssetImage('assets/images/sofa.png'),
-                fit: BoxFit.cover,
+  Widget _buildProductCard(
+    int index,
+    String productName,
+    int price,
+    String deliveryTime, {
+    String? image,
+    VoidCallback? onTap,
+  }) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Card(
+        color: Colors.white,
+        elevation: 4,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              height: 120,
+              decoration: BoxDecoration(
+                borderRadius:
+                    const BorderRadius.vertical(top: Radius.circular(8)),
+                image: DecorationImage(
+                  image: AssetImage(image ?? 'assets/images/intro3.jpeg'),
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                if (index % 2 == 0)
-                  Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                    decoration: BoxDecoration(
-                      color: Colors.orange,
-                      borderRadius: BorderRadius.circular(12),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  if (index % 2 == 0)
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 4),
+                      decoration: BoxDecoration(
+                        color: Colors.orange,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: const Text(
+                        'Z Rated',
+                        style: TextStyle(color: Colors.white, fontSize: 12),
+                      ),
                     ),
-                    child: const Text(
-                      'Z Rated',
-                      style: TextStyle(color: Colors.white, fontSize: 12),
-                    ),
+                  const SizedBox(height: 8),
+                  Text(
+                    productName,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
                   ),
-                const SizedBox(height: 8),
-                const Text(
-                  "Blanca Engineered Wood Queen Bed",
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(height: 4),
-                const Text(
-                  "₹869/mo",
-                  style: TextStyle(fontSize: 16, color: Colors.black),
-                ),
-                const SizedBox(height: 4),
-                const Text(
-                  "Delivery by 31 Jan",
-                  style: TextStyle(fontSize: 12, color: Colors.grey),
-                ),
-              ],
+                  const SizedBox(height: 4),
+                  Text(
+                    '${price.toString()}',
+                    style: TextStyle(fontSize: 16, color: Colors.black),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    deliveryTime,
+                    style: TextStyle(fontSize: 12, color: Colors.grey),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
