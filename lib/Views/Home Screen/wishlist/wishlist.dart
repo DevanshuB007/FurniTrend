@@ -13,11 +13,11 @@ class _WishlistScreenState extends State<WishlistScreen> {
   List<Map<String, dynamic>> wishlistItems = [
     {
       'title': 'Elvis Velvet 3 Seater Sofa',
-      'price': '₹ 22,999',ss
+      'price': '₹ 22,999',
       'originalPrice': '₹ 50,138',
       'discount': '-54%',
       'deliveryDate': '16 Feb',
-      'image': 'assets/images/sofa.png', // Replace with actual asset
+      'image': 'assets/images/sofa.png',
       'category': 'BRAND NEW',
     },
   ];
