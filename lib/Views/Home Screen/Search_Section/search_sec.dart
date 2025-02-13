@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:furlenco/Views/Home%20Screen/Delevery_Loacation/delevery_location.dart';
 import 'package:furlenco/Views/Home%20Screen/Search_Bar/search_bar.dart';
 import 'package:furlenco/Views/Home%20Screen/cart_Section/cart.dart';
+import 'package:furlenco/Views/Home%20Screen/wishlist/wishlist.dart';
 
 class SearchSec extends StatelessWidget {
   const SearchSec({super.key});
@@ -78,7 +79,15 @@ class SearchSec extends StatelessWidget {
                         },
                       ),
                       SizedBox(width: 16),
-                      Icon(Icons.favorite_border, color: Colors.grey),
+                      InkWell(
+                        child: Icon(Icons.favorite_border, color: Colors.grey),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => WishlistScreen()));
+                        },
+                      ),
                       SizedBox(width: 16),
                       InkWell(
                         child: Icon(Icons.shopping_cart, color: Colors.grey),

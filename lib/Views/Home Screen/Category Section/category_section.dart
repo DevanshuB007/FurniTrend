@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:furlenco/Views/Home%20Screen/All_product_category/products.dart';
-import 'package:furlenco/Views/Home%20Screen/Delevery_Loacation/delevery_location.dart';
-import 'package:furlenco/Views/Home%20Screen/Product_category/produccateg.dart';
 import 'package:furlenco/Views/Home%20Screen/Search_Section/search_sec.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -10,343 +8,135 @@ class CategorySection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SearchSec(),
-          SizedBox(
-            height: 10,
-          ),
+          const SearchSec(),
+          const SizedBox(height: 10),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: GridView.count(
-              crossAxisCount: screenWidth > 600 ? 4 : 2,
-              mainAxisSpacing: 30,
-              crossAxisSpacing: 15,
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              children: [
-                // Category 1
-                Stack(
-                  clipBehavior: Clip.none,
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        gradient: const LinearGradient(
-                          colors: [Colors.blue, Colors.teal],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                        ),
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      padding: const EdgeInsets.all(2),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(14),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.2),
-                              spreadRadius: 2,
-                              blurRadius: 4,
-                            ),
-                          ],
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                "The best furniture at the Best Prices!",
-                                textAlign: TextAlign.center,
-                                style: GoogleFonts.lora(
-                                    fontSize: 14, fontWeight: FontWeight.w500),
-                                // style: TextStyle(
-                                //   fontSize: 14,
-                                //   fontWeight: FontWeight.w500,
-                                // ),
-                              ),
-                              Expanded(
-                                child: Image.asset(
-                                  "assets/images/sofa.png",
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      top: 160,
-                      left: 16,
-                      right: 16,
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 8, vertical: 4),
-                        decoration: BoxDecoration(
-                          color: Colors.blue[800],
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(1),
-                          child: Text(
-                            "BUY BRAND NEW",
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.dmSans(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold),
-                            // style: TextStyle(
-                            //   color: Colors.white,
-                            //   fontWeight: FontWeight.bold,
-                            // ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                int crossAxisCount = 2;
 
-                Stack(
-                  clipBehavior: Clip.none,
+                if (constraints.maxWidth > 1200) {
+                  crossAxisCount = 4;
+                } else if (constraints.maxWidth > 600) {
+                  crossAxisCount = 3;
+                }
+
+                return GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: crossAxisCount,
+                    mainAxisSpacing: 30,
+                    crossAxisSpacing: 15,
+                    // childAspectRatio: 0.9,
+                  ),
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: categoryItems.length,
+                  itemBuilder: (context, index) {
+                    final category = categoryItems[index];
+                    return _buildCategoryItem(
+                      context,
+                      category['title']!,
+                      category['image']!,
+                      category['label']!,
+                      category['color']!,
+                      category['gradientColors']!,
+                      () => category['onTap']!(context),
+                    );
+                  },
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildCategoryItem(
+    BuildContext context,
+    String title,
+    String image,
+    String label,
+    Color labelColor,
+    List<Color> gradientColors,
+    VoidCallback? onTap,
+  ) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: gradientColors,
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+              borderRadius: BorderRadius.circular(16),
+            ),
+            padding: const EdgeInsets.all(2),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(14),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.2),
+                    spreadRadius: 2,
+                    blurRadius: 4,
+                  ),
+                ],
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        gradient: const LinearGradient(
-                          colors: [Colors.deepOrange, Colors.purple],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                        ),
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      padding: const EdgeInsets.all(2),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(14),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.2),
-                              spreadRadius: 2,
-                              blurRadius: 4,
-                            ),
-                          ],
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const Products(
-                                    selectedCategory: 'Bedroom',
-                                  ),
-                                ),
-                              );
-                            },
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                const Text(
-                                  "Furniture with Flexibility!",
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                                const SizedBox(height: 8),
-                                Expanded(
-                                  child: Image.asset(
-                                    "assets/images/chair.png",
-                                    fit: BoxFit.contain,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
+                    Text(
+                      title,
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.lora(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
-                    Positioned(
-                      top: 160,
-                      left: 16,
-                      right: 16,
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 8, vertical: 4),
-                        decoration: BoxDecoration(
-                          color: Colors.deepOrange,
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        child: Text(
-                          "RENT",
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.dmSans(
-                              color: Colors.white, fontWeight: FontWeight.bold),
-                        ),
+                    const SizedBox(height: 8),
+                    Expanded(
+                      child: Image.asset(
+                        image,
+                        fit: BoxFit.cover,
                       ),
                     ),
                   ],
                 ),
-                Stack(
-                  clipBehavior: Clip.none,
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        gradient: const LinearGradient(
-                          colors: [Colors.orange, Colors.deepOrange],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                        ),
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      padding: const EdgeInsets.all(2),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(14),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.2),
-                              spreadRadius: 2,
-                              blurRadius: 4,
-                            ),
-                          ],
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              const Text(
-                                "Affordable Solutions for your home ",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                              const SizedBox(height: 8),
-                              Expanded(
-                                child: Image.asset(
-                                  "assets/images/sofa1.png",
-                                  fit: BoxFit.cover,
-                                  height: 100,
-                                  width: 100,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      top: 160,
-                      left: 16,
-                      right: 16,
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 3, vertical: 4),
-                        decoration: BoxDecoration(
-                          color: Color(0xFF059baa),
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(3),
-                          child: Text(
-                            "BUY REFURBISHED",
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.dmSans(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
+              ),
+            ),
+          ),
+          Positioned(
+            top: 160,
+            left: 16,
+            right: 16,
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+              decoration: BoxDecoration(
+                color: labelColor,
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Text(
+                label,
+                textAlign: TextAlign.center,
+                style: GoogleFonts.dmSans(
+                  color: Colors.white,
+                  fontSize: 13,
+                  fontWeight: FontWeight.bold,
                 ),
-                Stack(
-                  clipBehavior: Clip.none,
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        gradient: const LinearGradient(
-                          colors: [Colors.purple, Colors.red],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                        ),
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      padding: const EdgeInsets.all(2),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(14),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.2),
-                              spreadRadius: 2,
-                              blurRadius: 4,
-                            ),
-                          ],
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              const Text(
-                                "Furniture with Flexibility!",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                              const SizedBox(height: 8),
-                              Expanded(
-                                child: Image.asset(
-                                  "assets/images/furnite.png",
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      top: 160,
-                      left: 16,
-                      right: 16,
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 8, vertical: 4),
-                        decoration: BoxDecoration(
-                          color: Colors.purple,
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(1),
-                          child: Text(
-                            "UNLMTD",
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.dmSans(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
+              ),
             ),
           ),
         ],
@@ -354,3 +144,45 @@ class CategorySection extends StatelessWidget {
     );
   }
 }
+
+final List<Map<String, dynamic>> categoryItems = [
+  {
+    'title': "The best furniture at the Best Prices!",
+    'image': "assets/images/sofa.png",
+    'label': "BUY BRAND NEW",
+    'color': Colors.blue[800]!,
+    'gradientColors': [Colors.blue, Colors.teal],
+    'onTap': () {},
+  },
+  {
+    'title': "Furniture with Flexibility!",
+    'image': "assets/images/chair.png",
+    'label': "RENT",
+    'color': Colors.deepOrange,
+    'gradientColors': [Colors.deepOrange, Colors.purple],
+    'onTap': (BuildContext context) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const Products(selectedCategory: 'Bedroom'),
+        ),
+      );
+    },
+  },
+  {
+    'title': "Affordable Solutions for your home",
+    'image': "assets/images/sofa1.png",
+    'label': "BUY REFURBISHED",
+    'color': const Color(0xFF059baa),
+    'gradientColors': [Colors.orange, Colors.deepOrange],
+    'onTap': () {},
+  },
+  {
+    'title': "Furniture with Flexibility!",
+    'image': "assets/images/furnite.png",
+    'label': "UNLMTD",
+    'color': Colors.purple,
+    'gradientColors': [Colors.purple, Colors.red],
+    'onTap': () {},
+  },
+];
